@@ -3,7 +3,22 @@
   "version": "1.0.0",
   "description": "Project about salaries of IT Developers from Uzbekistan",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
   "repository": "https://github.com/vorpal13/it-salary.git",
   "author": "vorpal13",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "sequelize": "^6.37.5"
+  }
 }

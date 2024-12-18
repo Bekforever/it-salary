@@ -23,16 +23,49 @@ class AuthorizationController {
       }
 
       // Генерируем токен
-      const token = jwt.sign({ email: user.email }, 'secret', {
-        expiresIn: '1h',
+      const token = jwt.sign({ email: user.email, id: user.id }, 'secret', {
+        expiresIn: '24h',
       })
 
-      const { password: _, ...userData } = user
+      const { dataValues } = user
+      const { password: _, ...rest } = dataValues
 
-      res.json({ token, message: 'Авторизация успешна', user: userData })
+      res.json({
+        message: 'Авторизация успешна',
+        data: { token, user: { ...rest } },
+      })
     } catch (error) {
       console.error(error)
       res.status(500).json({ message: 'Ошибка сервера' })
+    }
+  }
+  async get_me(req, res) {
+    const token = req.headers.authorization?.split(' ')[1]
+
+    if (!token) {
+      return res.status(401).json({ message: 'Токен не предоставлен' })
+    }
+
+    try {
+      const decoded = jwt.verify(token, 'secret')
+
+      const user = await User.findByPk(decoded.id)
+      console.log('user', user)
+      console.log('decoded', decoded)
+      if (!user) {
+        return res.status(401).json({ message: 'Пользователь не найден' })
+      }
+
+      const { dataValues } = user
+      const { password: _, ...rest } = dataValues
+
+      res.json({ message: 'Данные пользователя получены', data: rest })
+    } catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        return res.status(401).json({ message: 'Токен истёк' })
+      }
+
+      return res.status(401).json({ message: 'Недействительный токен' })
     }
   }
 }

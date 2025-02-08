@@ -1,7 +1,7 @@
 'use client'
 
-import { Input } from '@nextui-org/input'
-import { Button } from '@nextui-org/button'
+import { Input } from "@heroui/input"
+import { Button } from "@heroui/button"
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'

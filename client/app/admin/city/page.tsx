@@ -1,4 +1,4 @@
-import CityTable from '@/components/CityTable'
+import CityTable from '@/components/admin/CityTable'
 
 export default function CityPage() {
   return <CityTable />

@@ -1,4 +1,4 @@
-import PositionTable from '@/components/PositionTable'
+import PositionTable from '@/components/admin/PositionTable'
 
 export default function PositionPage() {
   return <PositionTable />

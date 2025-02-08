@@ -11,6 +11,20 @@ export const siteConfig = {
     {
       label: 'Зарплаты',
       href: '/salary',
+      children: [
+        {
+          label: 'Статистика по зарплатам',
+          href: '/',
+        },
+        {
+          label: 'Опросник',
+          href: '/survey',
+        },
+        {
+          label: 'История зарплат',
+          href: '/history',
+        },
+      ],
     },
   ],
   navMenuItems: [
@@ -23,4 +37,4 @@ export const siteConfig = {
       href: '/docs',
     },
   ],
-}
+};

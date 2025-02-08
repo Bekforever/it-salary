@@ -3,9 +3,9 @@ import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Input } from '@nextui-org/input'
-import { Select, SelectItem } from '@nextui-org/select'
-import { Button } from '@nextui-org/button'
+import { Input } from "@heroui/input"
+import { Select, SelectItem } from "@heroui/select"
+import { Button } from "@heroui/button"
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),

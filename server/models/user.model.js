@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize')
-const sequelize = require('../db')
-const City = require('./city.model')
-const Experience = require('./experience.model')
-const Position = require('./position.model')
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
+const City = require('./city.model');
+const Experience = require('./experience.model');
+const Position = require('./position.model');
 
 const User = sequelize.define('Users', {
   id: {
@@ -51,11 +51,19 @@ const User = sequelize.define('Users', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-})
+});
 
 // Определяем связи (если они нужны)
-// User.belongsTo(City, { foreignKey: 'id' })
-// User.belongsTo(Experience, { foreignKey: 'id' })
-// User.belongsTo(Position, { foreignKey: 'id' })
+User.belongsTo(City, { foreignKey: 'city', as: 'cities', targetKey: 'id' });
+User.belongsTo(Experience, {
+  foreignKey: 'experience',
+  as: 'experiences',
+  targetKey: 'id',
+});
+User.belongsTo(Position, {
+  foreignKey: 'position',
+  as: 'positions',
+  targetKey: 'id',
+});
 
-module.exports = User
+module.exports = User;

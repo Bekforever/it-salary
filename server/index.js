@@ -4,6 +4,7 @@ const cityRouter = require('./routes/city.routes')
 const experiencesRouter = require('./routes/experience.routes')
 const usersRouter = require('./routes/user.routes')
 const authRouter = require('./routes/authorization.routes')
+const statisticsRouter = require('./routes/statistics.routes')
 const authMiddleware = require('./middleware')
 const cookieParser = require('cookie-parser')
 const sequelize = require('./db')
@@ -27,6 +28,7 @@ const start = async () => {
     app.use('/api', cityRouter)
     app.use('/api', experiencesRouter)
     app.use('/api', usersRouter)
+    app.use('/api', statisticsRouter)
   } catch (error) {
     console.error('Ошибка при синхронизации базы данных:', error)
   }

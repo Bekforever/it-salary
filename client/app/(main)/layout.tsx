@@ -10,18 +10,18 @@ export default async function MainLayout({
   return (
     <div className="relative flex flex-col h-screen">
       <Navbar />
-      <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+      <main className="container flex-grow px-6 pt-16 mx-auto max-w-7xl">
         {children}
       </main>
-      <footer className="w-full flex items-center justify-center py-3">
+      <footer className="flex items-center justify-center w-full py-3">
         <Link
           isExternal
           className="flex items-center gap-1 text-current"
-          href="https://github.com/vorpal13"
-          title="github vorpal13"
+          href="https://github.com/bekforever"
+          title="github bekforever"
         >
           <span className="text-default-600">Developed by</span>
-          <p className="text-primary">Vorpal13</p>
+          <p className="text-primary">Bekforever</p>
         </Link>
       </footer>
     </div>

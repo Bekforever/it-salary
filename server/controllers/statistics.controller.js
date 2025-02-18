@@ -66,7 +66,7 @@ class StatisticsController {
           [fn('AVG', cast(col('salary'), 'DECIMAL')), 'averageSalary'],
         ],
         where: filters,
-        group: ['city', 'cities.name'], // Добавляем cities.name в группировку
+        group: ['city', 'cities.name', 'cities.id'], // Добавляем cities.name в группировку
         include: [{ model: City, as: 'cities', attributes: ['name', 'id'] }],
       });
 
@@ -77,7 +77,7 @@ class StatisticsController {
           [fn('AVG', cast(col('salary'), 'DECIMAL')), 'averageSalary'],
         ],
         where: filters,
-        group: ['experience', 'experiences.name', 'position.id'], // Добавляем experiences.name в группировку
+        group: ['experience', 'experiences.name', 'experiences.id'], // Добавляем experiences.name в группировку
         include: [
           { model: Experience, as: 'experiences', attributes: ['name', 'id'] },
         ],
@@ -86,13 +86,12 @@ class StatisticsController {
       // Средняя зарплата по позициям
       const avgSalaryByPosition = await User.findAll({
         attributes: [
-          'position',
           [fn('AVG', cast(col('salary'), 'DECIMAL')), 'averageSalary'],
         ],
         where: filters,
-        group: ['position', 'positions.name', 'position.id'], // Добавляем positions.name в группировку
+        group: ['positions.id'], // Группируем по positions.id
         include: [
-          { model: Position, as: 'positions', attributes: ['name', 'id'] },
+          { model: Position, as: 'positions', attributes: ['id', 'name'] },
         ],
       });
 

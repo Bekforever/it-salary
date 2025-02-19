@@ -1,5 +1,5 @@
 
-# Uzbek IT Specialists Salary Data
+# IT Specialists Salary Data
 
 This is an open-source project that aims to collect, analyze, and visualize salary data for IT professionals in Uzbekistan. The goal of this project is to provide valuable insights for job seekers, companies, and policymakers about the state of the IT job market in the country.
 
@@ -127,6 +127,6 @@ Please make sure to follow the coding standards and write clear commit messages.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ---

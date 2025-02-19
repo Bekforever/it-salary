@@ -15,7 +15,7 @@ import { Logo } from '@/components/ui/icons';
 import NavbarUser from './navbar-user';
 import NavbarLinks from './navbar-links';
 
-export default function Navbar() {
+export const Navbar = function() {
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">

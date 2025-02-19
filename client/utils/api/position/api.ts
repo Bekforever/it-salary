@@ -1,9 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { createPosition, deletePosition, getPositions, getPosition, updatePosition } from '.'
+import {
+  createPosition,
+  deletePosition,
+  getPositions,
+  getPosition,
+  updatePosition,
+} from '.'
 import { IPosition, IPositionCreateBody, IPositionUpdateBody } from './types'
 import { AxiosError } from 'axios'
-import { IErrorMsg } from '@/utils/lib/types'
+import { TErrorMsg } from '@/utils/lib/types'
 
 export const useGetAllPositions = () => {
   return useQuery<IPosition[], any, IPosition[]>({
@@ -21,7 +27,7 @@ export const useGetOnePosition = (id: string) => {
 
 export const useCreatePosition = () => {
   const queryClient = useQueryClient()
-  return useMutation<unknown, AxiosError<IErrorMsg>, IPositionCreateBody>({
+  return useMutation<unknown, AxiosError<TErrorMsg>, IPositionCreateBody>({
     mutationFn: createPosition,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['position'] })

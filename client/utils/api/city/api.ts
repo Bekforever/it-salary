@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { createCity, deleteCity, getCities, getCity, updateCity } from '.'
 import { ICity, ICityCreateBody, ICityUpdateBody } from './types'
 import { AxiosError } from 'axios'
-import { IErrorMsg } from '@/utils/lib/types'
+import { TErrorMsg } from '@/utils/lib/types'
 
 export const useGetAllCities = () => {
   return useQuery<ICity[], any, ICity[]>({
@@ -20,7 +20,7 @@ export const useGetOneCity = (id: string) => {
 
 export const useCreateCity = () => {
   const queryClient = useQueryClient()
-  return useMutation<unknown, AxiosError<IErrorMsg>, ICityCreateBody>({
+  return useMutation<unknown, AxiosError<TErrorMsg>, ICityCreateBody>({
     mutationFn: createCity,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['city'] })

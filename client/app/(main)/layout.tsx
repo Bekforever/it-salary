@@ -1,4 +1,4 @@
-import Navbar from '@/components/client/navbar';
+import { Navbar } from '@/components/client';
 import '@/styles/globals.css';
 import { Link } from '@heroui/link';
 

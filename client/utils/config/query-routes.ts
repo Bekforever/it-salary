@@ -31,4 +31,7 @@ export const queryRoutes = {
     update: (id: string) => `/users/${id}`,
     delete: (id: string) => `/users/${id}`,
   },
+  statistics: {
+    getAll: '/statistics',
+  },
 }

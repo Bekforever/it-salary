@@ -6,19 +6,23 @@ import {
   getExperiences,
   updateExperience,
 } from '.'
-import { IExperience, IExperienceCreateBody, IExperienceUpdateBody } from './types'
+import {
+  IExperience,
+  IExperienceCreateBody,
+  IExperienceUpdateBody,
+} from './types'
 import { AxiosError } from 'axios'
-import { IErrorMsg } from '@/utils/lib/types'
+import { TErrorMsg } from '@/utils/lib/types'
 
 export const useGetAllExperiences = () => {
-  return useQuery<any, AxiosError<IErrorMsg>, IExperience[]>({
+  return useQuery<any, AxiosError<TErrorMsg>, IExperience[]>({
     queryKey: ['experience'],
     queryFn: getExperiences,
   })
 }
 
 export const useGetOneExperience = (id: string) => {
-  return useQuery<IExperience, AxiosError<IErrorMsg>, any>({
+  return useQuery<IExperience, AxiosError<TErrorMsg>, any>({
     queryKey: ['experience', id],
     queryFn: () => getExperience(id),
   })
@@ -26,7 +30,7 @@ export const useGetOneExperience = (id: string) => {
 
 export const useCreateExperience = () => {
   const queryClient = useQueryClient()
-  return useMutation<unknown, AxiosError<IErrorMsg>, IExperienceCreateBody>({
+  return useMutation<unknown, AxiosError<TErrorMsg>, IExperienceCreateBody>({
     mutationFn: createExperience,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['experience'] })
@@ -36,7 +40,7 @@ export const useCreateExperience = () => {
 
 export const useDeleteExperience = () => {
   const queryClient = useQueryClient()
-  return useMutation<unknown, AxiosError<IErrorMsg>, string>({
+  return useMutation<unknown, AxiosError<TErrorMsg>, string>({
     mutationFn: deleteExperience,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['experience'] })
@@ -46,10 +50,12 @@ export const useDeleteExperience = () => {
 
 export const useUpdateExperience = () => {
   const queryClient = useQueryClient()
-  return useMutation<IExperience, AxiosError<IErrorMsg>, IExperienceUpdateBody>({
-    mutationFn: updateExperience,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['experience'] })
+  return useMutation<IExperience, AxiosError<TErrorMsg>, IExperienceUpdateBody>(
+    {
+      mutationFn: updateExperience,
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['experience'] })
+      },
     },
-  })
+  )
 }

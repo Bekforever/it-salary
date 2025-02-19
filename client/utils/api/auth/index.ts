@@ -1,11 +1,14 @@
-import { axiosInstance } from '@/utils/config/axios'
+import { http } from '@/utils/config/axios'
 import { ILoginCredentials, ILoginResponseData } from './types'
 import { baseURL, TOKEN } from '@/utils/config/constants'
 import { queryRoutes } from '@/utils/config/query-routes'
 
 export async function login(credentials: ILoginCredentials) {
   try {
-    const res = await axiosInstance.post<ILoginResponseData>(queryRoutes.auth.login, credentials)
+    const res = await http.post<ILoginResponseData>(
+      queryRoutes.auth.login,
+      credentials,
+    )
     return res.data
   } catch (error) {
     console.error(error)

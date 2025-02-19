@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { AxiosError } from 'axios'
-import { IErrorMsg } from '@/utils/lib/types'
+import { TErrorMsg } from '@/utils/lib/types'
 import { IUser, IUserCreateBody } from './types'
 import { createUser, deleteUser, getUser, getUsers, updateUser } from '.'
 
@@ -21,7 +21,7 @@ export const useGetOneUser = (id: string) => {
 
 export const useCreateUser = () => {
   const queryClient = useQueryClient()
-  return useMutation<unknown, AxiosError<IErrorMsg>, IUserCreateBody>({
+  return useMutation<unknown, AxiosError<TErrorMsg>, IUserCreateBody>({
     mutationFn: createUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
@@ -41,7 +41,11 @@ export const useDeleteUser = () => {
 
 export const useUpdateUser = () => {
   const queryClient = useQueryClient()
-  return useMutation<IUser, unknown, Partial<Omit<IUser, 'createdAt' | 'updatedAt'>>>({
+  return useMutation<
+    IUser,
+    unknown,
+    Partial<Omit<IUser, 'createdAt' | 'updatedAt'>>
+  >({
     mutationFn: updateUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] })

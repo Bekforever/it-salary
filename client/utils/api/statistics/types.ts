@@ -46,3 +46,10 @@ export interface UsersByPosition {
   count:     string;
   positions: Cities;
 }
+
+
+export type TStatisticsFilters = {
+  city: string
+  experience: string
+  position: string
+}

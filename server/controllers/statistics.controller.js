@@ -3,7 +3,6 @@ const User = require('../models/user.model')
 const City = require('../models/city.model')
 const Experience = require('../models/experience.model')
 const Position = require('../models/position.model')
-const { getAverageSalary, getMaxSalary } = require('../utils/samples')
 
 class StatisticsController {
   async getAllStatistics(req, res) {
@@ -11,20 +10,34 @@ class StatisticsController {
       const { city, experience, position } = req.query
 
       let filters = {}
-      if (city) filters.city = city
-      if (experience) filters.experience = experience
-      if (position) filters.position = position
+      let message = 'Статистика' // Базовое сообщение
 
-      const totalUsers = await User.count({
-        where: filters,
-      })
+      let cityName = ''
+      let experienceName = ''
+      let positionName = ''
 
-      const min = await User.min('salary', {
-        where: filters,
-      })
-      const max = await User.max('salary', {
-        where: filters,
-      })
+      if (city) {
+        filters.city = city
+        const cityData = await City.findByPk(city)
+        cityName = cityData ? cityData.name : 'неизвестный город'
+        message += ` по городу ${cityName}`
+      }
+      if (experience) {
+        filters.experience = experience
+        const experienceData = await Experience.findByPk(experience)
+        experienceName = experienceData ? experienceData.name : 'неизвестный опыт'
+        message += city ? `, с опытом ${experienceName}` : ` по опыту ${experienceName}`
+      }
+      if (position) {
+        filters.position = position
+        const positionData = await Position.findByPk(position)
+        positionName = positionData ? positionData.name : 'неизвестная должность'
+        message += city || experience ? `, на должности ${positionName}` : ` по должности ${positionName}`
+      }
+
+      const totalUsers = await User.count({ where: filters })
+      const min = await User.min('salary', { where: filters })
+      const max = await User.max('salary', { where: filters })
       const average = await User.findOne({
         attributes: [[fn('AVG', cast(col('salary'), 'DECIMAL')), 'averageSalary']],
         where: filters,
@@ -37,7 +50,7 @@ class StatisticsController {
           max: +max,
           average: Math.floor(+average.getDataValue('averageSalary')),
         },
-        message: 'Статистика успешно получена',
+        message,
       })
     } catch (error) {
       console.error('Ошибка при выполнении запроса:', error)

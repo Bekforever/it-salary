@@ -1,4 +1,5 @@
 export const formatDate = (isoString: Date) => {
+  'use client'
   const date = new Date(isoString)
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2, '0')

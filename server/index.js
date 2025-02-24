@@ -19,9 +19,6 @@ app.use(cors())
 
 const start = async () => {
   try {
-    await sequelize.sync() // Синхронизация моделей
-    console.log('База данных синхронизирована!')
-
     app.use('/api', authRouter)
     app.use('/api', authMiddleware)
     app.use('/api', positionsRouter)
@@ -29,6 +26,9 @@ const start = async () => {
     app.use('/api', experiencesRouter)
     app.use('/api', usersRouter)
     app.use('/api', statisticsRouter)
+
+    await sequelize.sync({ alter: true })
+    console.log('База данных синхронизирована!')
   } catch (error) {
     console.error('Ошибка при синхронизации базы данных:', error)
   }

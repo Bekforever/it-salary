@@ -1,8 +1,12 @@
-const { Sequelize } = require('sequelize')
+import { drizzle } from 'drizzle-orm/node-postgres'
+import { Pool } from 'pg'
 
-const sequelize = new Sequelize('new_db', 'postgres', '1302', {
+const pool = new Pool({
+  user: 'postgres',
   host: 'localhost',
-  dialect: 'postgres',
+  database: 'new_db',
+  password: '1302',
+  port: 5432, // убедитесь, что порт соответствует вашему PostgreSQL
 })
 
-module.exports = sequelize
+export const db = drizzle(pool)

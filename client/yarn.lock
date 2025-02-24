@@ -456,6 +456,19 @@
     "@react-types/button" "3.10.2"
     "@react-types/overlays" "3.8.12"
 
+"@heroui/progress@^2.2.10":
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/@heroui/progress/-/progress-2.2.10.tgz#e73f518ae9d4e2e5c1b22c50afdbba3716e16da4"
+  integrity sha512-/UQ5qMVzveFv0YFwqtiqPG/ASjM8s/JNGPmJJN+u5pudHUAmfVyN6td53BDTJx8DpH54M34SUCQWoW4H9Br0cQ==
+  dependencies:
+    "@heroui/react-utils" "2.1.7"
+    "@heroui/shared-utils" "2.1.6"
+    "@heroui/use-is-mounted" "2.1.5"
+    "@react-aria/i18n" "3.12.5"
+    "@react-aria/progress" "3.4.19"
+    "@react-aria/utils" "3.27.0"
+    "@react-types/progress" "3.5.9"
+
 "@heroui/react-rsc-utils@2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@heroui/react-rsc-utils/-/react-rsc-utils-2.1.2.tgz#02c463a612034b1abe0d437f9a076759b532e370"
@@ -818,6 +831,11 @@
   integrity sha512-gUSM0prqqjxUe1JP1coGVlpTeX+NIRhq9T+qUZPYeYsD8HXnwx3MyvfM4TYTUKRxa6XvsefW2DegV8uUYpxz8Q==
   dependencies:
     "@react-aria/ssr" "3.9.7"
+
+"@heroui/use-is-mounted@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@heroui/use-is-mounted/-/use-is-mounted-2.1.5.tgz#566fa6023452a6f1879fbc796ad611c71b28bcdf"
+  integrity sha512-u3tQslGcGLaamrb6QKrKvJsPoDpmRxVtF9LwjXJLjybNh0RcIAuJ+Tax/y04gA46tqTFN4WO2va+wQFHwr4q7w==
 
 "@heroui/use-measure@2.1.2":
   version "2.1.2"
@@ -1343,7 +1361,7 @@
     "@react-types/shared" "^3.26.0"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/label@^3.7.13":
+"@react-aria/label@^3.7.13", "@react-aria/label@^3.7.14":
   version "3.7.14"
   resolved "https://registry.yarnpkg.com/@react-aria/label/-/label-3.7.14.tgz#a4922cbfbbe20e8e14b84b0c56c504d73257f094"
   integrity sha512-EN1Md2YvcC4sMqBoggsGYUEGlTNqUfJZWzduSt29fbQp1rKU2KlybTe+TWxKq/r2fFd+4JsRXxMeJiwB3w2AQA==
@@ -1457,6 +1475,18 @@
     "@react-stately/overlays" "^3.6.13"
     "@react-types/button" "^3.10.2"
     "@react-types/overlays" "^3.8.12"
+    "@react-types/shared" "^3.27.0"
+    "@swc/helpers" "^0.5.0"
+
+"@react-aria/progress@3.4.19":
+  version "3.4.19"
+  resolved "https://registry.yarnpkg.com/@react-aria/progress/-/progress-3.4.19.tgz#722ea3389da0d067b092b13fe01c3edb2a9c4ce7"
+  integrity sha512-5HHnBJHqEUuY+dYsjIZDYsENeKr49VCuxeaDZ0OSahbOlloIOB1baCo/6jLBv1O1rwrAzZ2gCCPcVGed/cjrcw==
+  dependencies:
+    "@react-aria/i18n" "^3.12.5"
+    "@react-aria/label" "^3.7.14"
+    "@react-aria/utils" "^3.27.0"
+    "@react-types/progress" "^3.5.9"
     "@react-types/shared" "^3.27.0"
     "@swc/helpers" "^0.5.0"
 
@@ -2017,6 +2047,13 @@
   version "3.8.12"
   resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.8.12.tgz#0cd1ee17e6eacc33899821ab34045fc396898c22"
   integrity sha512-ZvR1t0YV7/6j+6OD8VozKYjvsXT92+C/2LOIKozy7YUNS5KI4MkXbRZzJvkuRECVZOmx8JXKTUzhghWJM/3QuQ==
+  dependencies:
+    "@react-types/shared" "^3.27.0"
+
+"@react-types/progress@3.5.9", "@react-types/progress@^3.5.9":
+  version "3.5.9"
+  resolved "https://registry.yarnpkg.com/@react-types/progress/-/progress-3.5.9.tgz#aab7a20f361d970e5e847fedbe4306557cde0bad"
+  integrity sha512-zFxOzx3G8XUmHgpm037Hcayls5bqzXVa182E3iM7YWTmrjxJPKZ58XL0WWBgpTd+mJD7fTpnFdAZqSmFbtDOdA==
   dependencies:
     "@react-types/shared" "^3.27.0"
 

@@ -15,7 +15,6 @@ class AuthorizationController {
         return res.status(401).json({ message: 'Неверные учетные данные' })
       }
       const hashedPassword = user.password
-      // res.json(user)
       // Проверяем пароль
       const isPasswordValid = await bcrypt.compare(password, hashedPassword)
       if (!isPasswordValid) {

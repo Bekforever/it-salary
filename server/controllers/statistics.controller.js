@@ -35,7 +35,14 @@ class StatisticsController {
         message += city || experience ? `, на должности ${positionName}` : ` по должности ${positionName}`
       }
 
+      // users
       const totalUsers = await User.count({ where: filters })
+      const usersByCity = await User.findAll({
+        attributes: ['city', [fn('COUNT', 'id'), 'usersCount']],
+        where: filters,
+        group: ['city'],
+      })
+      // salaries
       const min = await User.min('salary', { where: filters })
       const max = await User.max('salary', { where: filters })
       const average = await User.findOne({
@@ -45,10 +52,15 @@ class StatisticsController {
 
       res.json({
         data: {
-          totalUsers,
-          min: +min,
-          max: +max,
-          average: Math.floor(+average.getDataValue('averageSalary')),
+          users: {
+            totalUsers,
+            usersByCity,
+          },
+          salaries: {
+            min: +min,
+            max: +max,
+            average: Math.floor(+average.getDataValue('averageSalary')),
+          },
         },
         message,
       })

@@ -10,10 +10,12 @@ export const useGetStatistics = (params: TStatisticsFilters) => {
     if (city) newParams.city = city
     if (experience) newParams.experience = experience
     if (position) newParams.position = position
+    console.log('newParams', newParams)
+    console.log('params', params)
     return newParams
   }
   return useQuery<ResponseWithMsg<TStatistics>>({
-    queryKey: ['statistics', purifyParams],
+    queryKey: ['statistics', purifyParams()],
     queryFn: () => getStatistics(purifyParams()),
     placeholderData: keepPreviousData,
   })

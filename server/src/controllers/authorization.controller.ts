@@ -24,7 +24,7 @@ class AuthorizationController {
       }
 
       const token = jwt.sign({ email: user.email, id: user.id }, jwtSecret, {
-        expiresIn: '24h',
+        expiresIn: '9999h',
       })
 
       const { password: _, ...rest } = user

@@ -34,9 +34,9 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 const Minmax = ({ data }: Props) => {
   const chartData = data && [
-    { name: 'Минимум', value: data?.data?.min },
-    { name: 'Среднее', value: data?.data?.average },
-    { name: 'Максимум', value: data?.data?.max },
+    { name: 'Минимум', value: data?.data?.salaries.min },
+    { name: 'Среднее', value: data?.data?.salaries.average },
+    { name: 'Максимум', value: data?.data?.salaries.max },
   ]
 
   return (

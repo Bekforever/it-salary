@@ -15,6 +15,7 @@ export default function SalaryPage() {
     position: '',
   })
   const { data } = useGetStatistics(filters)
+
   if (!data) {
     return <>Loading</>
   }

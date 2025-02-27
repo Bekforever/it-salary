@@ -5,10 +5,10 @@ const router = Router()
 const { createExperience, getExperiences, getExperienceById, updateExperience, deleteExperience } =
   ExperienceController
 
-router.post('/experiences', createExperience)
-router.get('/experiences', getExperiences)
-router.get('/experiences/:id', getExperienceById)
-router.put('/experiences/:id', updateExperience)
-router.delete('/experiences/:id', deleteExperience)
+router.post('/experience', createExperience)
+router.get('/experience', getExperiences)
+router.get('/experience/:id', getExperienceById)
+router.put('/experience/:id', updateExperience)
+router.delete('/experience/:id', deleteExperience)
 
 export default router

@@ -105,8 +105,8 @@ class StatisticsController {
             usersByCity,
           },
           salaries: {
-            min: salaries[0]?.min || 0,
-            max: salaries[0]?.max || 0,
+            min: +salaries[0]?.min || 0,
+            max: +salaries[0]?.max || 0,
             average: Math.floor(salaries[0]?.average || 0),
           },
         },

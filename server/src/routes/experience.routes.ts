@@ -3,7 +3,7 @@ import ExperienceController from '../controllers/experience.controller'
 
 const router = Router()
 const { createExperience, getExperiences, getExperienceById, updateExperience, deleteExperience } =
-  new ExperienceController()
+  ExperienceController
 
 router.post('/experiences', createExperience)
 router.get('/experiences', getExperiences)

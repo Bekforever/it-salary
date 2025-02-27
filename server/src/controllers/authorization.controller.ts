@@ -62,4 +62,4 @@ class AuthorizationController {
   }
 }
 
-export default AuthorizationController
+export default new AuthorizationController()

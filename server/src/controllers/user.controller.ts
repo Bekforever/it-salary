@@ -45,7 +45,17 @@ class UserController {
 
   getUsers: RequestHandler = async function (req: Request, res: Response): Promise<any> {
     try {
-      const allUsers = await db.select().from(User)
+      const allUsers = await db
+        .select({
+          id: User.id,
+          email: User.email,
+          city: User.city,
+          role: User.role,
+          salary: User.salary,
+          position: User.position,
+          experience: User.experience,
+        })
+        .from(User)
       res.json(allUsers)
     } catch (error) {
       console.error('Ошибка при получении пользователей:', error)
@@ -121,4 +131,4 @@ class UserController {
   }
 }
 
-export default UserController
+export default new UserController()

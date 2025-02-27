@@ -83,4 +83,4 @@ class ExperienceController {
   }
 }
 
-export default ExperienceController
+export default new ExperienceController()

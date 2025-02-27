@@ -2,8 +2,7 @@ import Router from 'express'
 import PositionController from '../controllers/position.controller'
 
 const router = Router()
-const { createPosition, getPositions, getPositionById, updatePosition, deletePosition } =
-  new PositionController()
+const { createPosition, getPositions, getPositionById, updatePosition, deletePosition } = PositionController
 
 router.post('/positions', createPosition)
 router.get('/positions', getPositions)

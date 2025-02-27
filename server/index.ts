@@ -24,13 +24,13 @@ const start = async () => {
 
     app.use('/api', authRouter)
 
-    app.use('/api/position', authMiddleware, positionsRouter)
-    app.use('/api/city', authMiddleware, cityRouter)
-    app.use('/api/experience', authMiddleware, experiencesRouter)
-    app.use('/api/users', authMiddleware, usersRouter)
-    app.use('/api/statistics', authMiddleware, statisticsRouter)
-    app.use('/api/location', authMiddleware, locationRouter)
-    app.use('/api/company', authMiddleware, companyRouter)
+    app.use('/api', authMiddleware, positionsRouter)
+    app.use('/api', authMiddleware, cityRouter)
+    app.use('/api', authMiddleware, experiencesRouter)
+    app.use('/api', authMiddleware, usersRouter)
+    app.use('/api', authMiddleware, statisticsRouter)
+    app.use('/api', authMiddleware, locationRouter)
+    app.use('/api', authMiddleware, companyRouter)
 
     app.listen(port, () => {
       console.log(`🚀 Сервер запущен на порту ${port}.`)

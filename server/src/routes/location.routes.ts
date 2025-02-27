@@ -2,8 +2,7 @@ import Router from 'express'
 import LocationController from '../controllers/location.controller'
 
 const router = Router()
-const { createLocation, deleteLocation, getLocationById, getLocations, updateLocation } =
-  new LocationController()
+const { createLocation, deleteLocation, getLocationById, getLocations, updateLocation } = LocationController
 
 router.post('/location', createLocation)
 router.get('/location', getLocations)

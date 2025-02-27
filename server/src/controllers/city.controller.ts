@@ -81,4 +81,4 @@ class CityController {
   }
 }
 
-export default CityController
+export default new CityController()

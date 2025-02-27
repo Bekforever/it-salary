@@ -2,7 +2,7 @@ import { Router } from 'express'
 import UserController from '../controllers/user.controller'
 
 const router = Router()
-const { createUser, deleteUser, getUserById, getUsers, updateUser } = new UserController()
+const { createUser, deleteUser, getUserById, getUsers, updateUser } = UserController
 
 router.post('/users', createUser)
 router.get('/users', getUsers)

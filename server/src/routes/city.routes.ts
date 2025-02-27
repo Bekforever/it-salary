@@ -2,7 +2,7 @@ import { Router } from 'express'
 import CityController from '../controllers/city.controller'
 
 const router = Router()
-const { createCity, getAllCity, getCityById, updateCity, deleteCity } = new CityController()
+const { createCity, getAllCity, getCityById, updateCity, deleteCity } = CityController
 
 router.post('/city', createCity)
 router.get('/city', getAllCity)

@@ -82,4 +82,4 @@ class PositionController {
   }
 }
 
-export default PositionController
+export default new PositionController()

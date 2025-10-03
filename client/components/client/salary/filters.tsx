@@ -1,12 +1,13 @@
 'use client'
-import { useGetAllCities } from '@/utils/api/city/api'
-import { useGetAllExperiences } from '@/utils/api/experience/api'
-import { useGetAllPositions } from '@/utils/api/position/api'
-import { TStatisticsFilters } from '@/utils/api/statistics/types'
 import { Button } from '@heroui/button'
 import { Card, CardBody, CardHeader } from '@heroui/card'
 import { Select, SelectItem } from '@heroui/select'
 import { useState } from 'react'
+
+import { useGetAllCities } from '@/utils/api/city/api'
+import { useGetAllExperiences } from '@/utils/api/experience/api'
+import { useGetAllPositions } from '@/utils/api/position/api'
+import { TStatisticsFilters } from '@/utils/api/statistics/types'
 
 type Props = {
   filters: TStatisticsFilters
@@ -60,13 +61,13 @@ const Filters = ({ filters, setFilters }: Props) => {
       <CardBody>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           <Select
+            isLoading={citiesLoading}
             label="Выберите город"
             selectedKeys={selectedCity}
-            isLoading={citiesLoading}
+            variant="bordered"
             onSelectionChange={(keys) =>
               setSelectedCity(new Set(Array.from(keys).map(String)))
             }
-            variant="bordered"
           >
             {cities?.map((city) => (
               <SelectItem key={city.id}>{city.name}</SelectItem>
@@ -74,13 +75,13 @@ const Filters = ({ filters, setFilters }: Props) => {
           </Select>
 
           <Select
+            isLoading={experiencesLoading}
             label="Выберите опыт"
             selectedKeys={selectedExperience}
-            isLoading={experiencesLoading}
+            variant="bordered"
             onSelectionChange={(keys) =>
               setSelectedExperience(new Set(Array.from(keys).map(String)))
             }
-            variant="bordered"
           >
             {experiences?.map((experience) => (
               <SelectItem key={experience.id}>{experience.name}</SelectItem>
@@ -88,13 +89,13 @@ const Filters = ({ filters, setFilters }: Props) => {
           </Select>
 
           <Select
+            isLoading={positionsLoading}
             label="Выберите грейд"
             selectedKeys={selectedPosition}
-            isLoading={positionsLoading}
+            variant="bordered"
             onSelectionChange={(keys) =>
               setSelectedPosition(new Set(Array.from(keys).map(String)))
             }
-            variant="bordered"
           >
             {positions?.map((position) => (
               <SelectItem key={position.id}>{position.name}</SelectItem>

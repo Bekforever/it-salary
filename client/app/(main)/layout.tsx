@@ -1,11 +1,12 @@
-import { Navbar } from '@/components/client';
-import '@/styles/globals.css';
-import { Link } from '@heroui/link';
+import { Navbar } from '@/components/client'
+
+import '@/styles/globals.css'
+import { Link } from '@heroui/link'
 
 export default async function MainLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <div className="relative flex flex-col h-screen">
@@ -25,5 +26,5 @@ export default async function MainLayout({
         </Link>
       </footer>
     </div>
-  );
+  )
 }

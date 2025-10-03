@@ -8,5 +8,7 @@ export const User = pgTable('user', {
   city: uuid('city').notNull(),
   experience: uuid('experience').notNull(),
   position: uuid('position').notNull(),
+  company: uuid('company').notNull(),
+  location: uuid('location').notNull(),
   salary: varchar('salary', { length: 255 }).notNull(),
 })

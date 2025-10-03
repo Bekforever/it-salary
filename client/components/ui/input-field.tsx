@@ -1,4 +1,4 @@
-import { Input } from "@heroui/input"
+import { Input } from '@heroui/input'
 
 type InputFieldProps = {
   label: string
@@ -17,13 +17,13 @@ export function InputField({
 }: InputFieldProps) {
   return (
     <Input
-      id={id}
-      name={id}
-      type={type}
-      label={label}
-      placeholder={placeholder}
       errorMessage={error}
+      id={id}
       isInvalid={!!error}
+      label={label}
+      name={id}
+      placeholder={placeholder}
+      type={type}
     />
   )
 }

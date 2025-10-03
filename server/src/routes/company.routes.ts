@@ -2,7 +2,7 @@ import { Router } from 'express'
 import CompanyController from '../controllers/company.controller'
 
 const router = Router()
-const { createCompany, getCompanies, getCompanyById, updateCompany, deleteCompany } = new CompanyController()
+const { createCompany, getCompanies, getCompanyById, updateCompany, deleteCompany } = CompanyController
 
 router.post('/company', createCompany)
 router.get('/company', getCompanies)

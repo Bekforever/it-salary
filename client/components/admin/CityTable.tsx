@@ -1,14 +1,33 @@
 'use client'
 
-import { Button } from "@heroui/button"
-import { Input } from "@heroui/input"
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/table"
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal"
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { Button } from '@heroui/button'
+import { Input } from '@heroui/input'
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from '@heroui/modal'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from '@heroui/table'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
-import { useCreateCity, useDeleteCity, useGetAllCities, useUpdateCity } from '@/utils/api/city/api'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+import {
+  useCreateCity,
+  useDeleteCity,
+  useGetAllCities,
+  useUpdateCity,
+} from '@/utils/api/city/api'
 import { ICity, ICityCreateBody } from '@/utils/api/city/types'
 import { formatDate } from '@/utils/lib/formatDate'
 
@@ -24,12 +43,7 @@ export default function CityTable() {
   const { mutateAsync: updateCity } = useUpdateCity()
   const [editingCity, setEditingCity] = useState<any | null>(null)
   const { isOpen, onOpenChange, onOpen } = useDisclosure()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ICityCreateBody>({
+  const { register, handleSubmit, reset } = useForm<ICityCreateBody>({
     resolver: zodResolver(citySchema),
   })
 
@@ -57,6 +71,7 @@ export default function CityTable() {
   const handleDelete = (id: string) => {
     deleteCity(id)
   }
+
   useEffect(() => {
     if (!isOpen) {
       reset({ name: '' })
@@ -65,13 +80,13 @@ export default function CityTable() {
   }, [isOpen])
 
   return (
-    <div className='w-full mt-10 flex flex-col gap-5'>
-      <div className='flex items-center justify-between'>
-        <h1 className='font-bold'>Cities</h1>
+    <div className="w-full mt-10 flex flex-col gap-5">
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold">Cities</h1>
         <Button onClick={onOpen}>Add City</Button>
       </div>
       <Table
-        aria-label='Cities Table'
+        aria-label="Cities Table"
         style={{
           height: 'auto',
           minWidth: '100%',
@@ -89,11 +104,13 @@ export default function CityTable() {
               <TableCell>{city.name}</TableCell>
               <TableCell>{formatDate(city.createdAt)}</TableCell>
               <TableCell>{formatDate(city.updatedAt)}</TableCell>
-              <TableCell style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Button size='sm' onClick={() => handleEdit(city)}>
+              <TableCell
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <Button size="sm" onClick={() => handleEdit(city)}>
                   Edit
                 </Button>
-                <Button size='sm' onClick={() => handleDelete(city.id)}>
+                <Button size="sm" onClick={() => handleDelete(city.id)}>
                   Delete
                 </Button>
               </TableCell>
@@ -109,16 +126,22 @@ export default function CityTable() {
           </ModalHeader>
           <ModalBody>
             <form onSubmit={handleSubmit(handleAdd)}>
-              <div className='flex flex-col gap-3'>
+              <div className="flex flex-col gap-3">
                 <Input
                   {...register('name')}
-                  placeholder='City Name'
-                  label='Name'
                   fullWidth
                   isClearable
+                  label="Name"
+                  placeholder="City Name"
                 />
-                {isError && <span className='text-red-500'>{error?.response?.data?.message}</span>}
-                <Button type='submit'>{editingCity ? 'Update City' : 'Add City'}</Button>
+                {isError && (
+                  <span className="text-red-500">
+                    {error?.response?.data?.message}
+                  </span>
+                )}
+                <Button type="submit">
+                  {editingCity ? 'Update City' : 'Add City'}
+                </Button>
               </div>
             </form>
           </ModalBody>

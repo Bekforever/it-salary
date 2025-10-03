@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SurveyPage = () => {
   return (
@@ -7,7 +7,7 @@ const SurveyPage = () => {
         Данная страница находится на стадии разработки.
       </h1>
     </div>
-  );
-};
+  )
+}
 
-export default SurveyPage;
+export default SurveyPage

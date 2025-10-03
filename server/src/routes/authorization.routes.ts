@@ -2,9 +2,9 @@ import { Router } from 'express'
 import AuthorizationController from '../controllers/authorization.controller'
 
 const router = Router()
-const authorizationController = new AuthorizationController()
+const { login, get_me } = AuthorizationController
 
-router.post('/login', (req, res, next) => authorizationController.login(req, res, next))
-router.get('/get_me', (req, res, next) => authorizationController.get_me(req, res, next))
+router.post('/login', login)
+router.get('/get_me', get_me)
 
 export default router

@@ -1,9 +1,11 @@
 import '@/styles/globals.css'
-import { fontSans } from '@/utils/config/fonts'
-import { siteConfig } from '@/utils/config/site'
 import clsx from 'clsx'
 import { Metadata } from 'next'
+
 import { Providers } from './providers'
+
+import { siteConfig } from '@/utils/config/site'
+import { fontSans } from '@/utils/config/fonts'
 
 export const metadata: Metadata = {
   title: {
@@ -16,12 +18,23 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html suppressHydrationWarning lang='ru'>
+    <html suppressHydrationWarning lang="ru">
       <head />
-      <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>{children}</Providers>
+      <body
+        className={clsx(
+          'min-h-screen bg-background font-sans antialiased',
+          fontSans.variable,
+        )}
+      >
+        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+          {children}
+        </Providers>
       </body>
     </html>
   )

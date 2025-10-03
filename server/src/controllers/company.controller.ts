@@ -82,4 +82,4 @@ class CompanyController {
   }
 }
 
-export default CompanyController
+export default new CompanyController()

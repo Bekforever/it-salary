@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const HistoryPage = () => {
   return (
@@ -7,7 +7,7 @@ const HistoryPage = () => {
         Данная страница находится на стадии разработки.
       </h1>
     </div>
-  );
-};
+  )
+}
 
-export default HistoryPage;
+export default HistoryPage

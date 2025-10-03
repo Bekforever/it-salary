@@ -88,4 +88,4 @@ class LocationController {
   }
 }
 
-export default LocationController
+export default new LocationController()

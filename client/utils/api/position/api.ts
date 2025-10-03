@@ -1,5 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { AxiosError } from 'axios'
+
+import { IPosition, IPositionCreateBody, IPositionUpdateBody } from './types'
+
 import {
   createPosition,
   deletePosition,
@@ -7,8 +10,7 @@ import {
   getPosition,
   updatePosition,
 } from '.'
-import { IPosition, IPositionCreateBody, IPositionUpdateBody } from './types'
-import { AxiosError } from 'axios'
+
 import { TErrorMsg } from '@/utils/lib/types'
 
 export const useGetAllPositions = () => {
@@ -27,6 +29,7 @@ export const useGetOnePosition = (id: string) => {
 
 export const useCreatePosition = () => {
   const queryClient = useQueryClient()
+
   return useMutation<unknown, AxiosError<TErrorMsg>, IPositionCreateBody>({
     mutationFn: createPosition,
     onSuccess: () => {
@@ -37,6 +40,7 @@ export const useCreatePosition = () => {
 
 export const useDeletePosition = () => {
   const queryClient = useQueryClient()
+
   return useMutation<unknown, any, string>({
     mutationFn: deletePosition,
     onSuccess: () => {
@@ -47,6 +51,7 @@ export const useDeletePosition = () => {
 
 export const useUpdatePosition = () => {
   const queryClient = useQueryClient()
+
   return useMutation<IPosition, unknown, IPositionUpdateBody>({
     mutationFn: updatePosition,
     onSuccess: () => {

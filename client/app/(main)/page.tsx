@@ -1,4 +1,4 @@
-import { subtitle, title } from '@/components/ui/primitives';
+import { title } from '@/components/ui/primitives'
 
 const MainPage = () => {
   return (
@@ -19,15 +19,15 @@ const MainPage = () => {
           <div className="grid items-center grid-cols-1 lg:grid-cols-2 gap-x-12 xl:gap-x-24 gap-y-12">
             <div className="relative lg:mb-12">
               <img
+                alt=""
                 className="absolute -right-0 -bottom-8 xl:-bottom-12 xl:-right-4"
                 src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/dots-pattern.svg"
-                alt=""
               />
               <div className="pl-12 pr-6">
                 <img
+                  alt=""
                   className="relative rounded-md"
                   src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/girl-working-on-laptop.jpg"
-                  alt=""
                 />
               </div>
               <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
@@ -66,7 +66,7 @@ const MainPage = () => {
         </div>
       </section>
     </section>
-  );
-};
+  )
+}
 
-export default MainPage;
+export default MainPage

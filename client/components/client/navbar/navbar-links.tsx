@@ -1,20 +1,21 @@
-'use client';
+'use client'
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-} from '@heroui/dropdown';
-import clsx from 'clsx';
-import { link as linkStyles } from '@heroui/theme';
-import { siteConfig } from '@/utils/config/site';
-import { NavbarItem } from '@heroui/navbar';
-import { usePathname, useRouter } from 'next/navigation';
-import { Button } from '@heroui/button';
+} from '@heroui/dropdown'
+import clsx from 'clsx'
+import { link as linkStyles } from '@heroui/theme'
+import { NavbarItem } from '@heroui/navbar'
+import { usePathname, useRouter } from 'next/navigation'
+import { Button } from '@heroui/button'
+
+import { siteConfig } from '@/utils/config/site'
 
 const NavbarLinks = () => {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <ul className="justify-start hidden gap-4 ml-2 lg:flex">
@@ -57,7 +58,7 @@ const NavbarLinks = () => {
         </NavbarItem>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default NavbarLinks;
+export default NavbarLinks

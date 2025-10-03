@@ -1,17 +1,17 @@
-'use client'
+import { Card, CardBody, CardHeader } from '@heroui/card'
+import {
+  Bar,
+  BarChart,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
+
 import { TStatistics } from '@/utils/api/statistics/types'
 import { formatNumber } from '@/utils/lib/formatNumber'
 import { ResponseWithMsg } from '@/utils/lib/types'
-import { Card, CardBody, CardHeader } from '@heroui/card'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-} from 'recharts'
 
 type Props = {
   data: ResponseWithMsg<TStatistics>
@@ -29,14 +29,15 @@ const CustomTooltip = ({ active, payload }: any) => {
       </div>
     )
   }
+
   return null
 }
 
 const Minmax = ({ data }: Props) => {
   const chartData = data && [
-    { name: 'Минимум', value: data?.data?.salaries.min },
-    { name: 'Среднее', value: data?.data?.salaries.average },
-    { name: 'Максимум', value: data?.data?.salaries.max },
+    { name: 'Минимум', value: data?.data?.salaries?.total?.min },
+    { name: 'Среднее', value: data?.data?.salaries?.total?.average },
+    { name: 'Максимум', value: data?.data?.salaries?.total?.max },
   ]
 
   return (
@@ -45,7 +46,7 @@ const Minmax = ({ data }: Props) => {
         <h3 className="text-4xl font-light">{data?.message}</h3>
       </CardHeader>
       <CardBody>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer height={300} width="100%">
           <BarChart
             data={chartData}
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}

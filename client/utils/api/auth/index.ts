@@ -1,6 +1,7 @@
-import { http } from '@/utils/config/axios'
 import { ILoginCredentials, ILoginResponseData } from './types'
-import { baseURL, TOKEN } from '@/utils/config/constants'
+
+import { http } from '@/utils/config/axios'
+import { baseURL } from '@/utils/config/constants'
 import { queryRoutes } from '@/utils/config/query-routes'
 
 export async function login(credentials: ILoginCredentials) {
@@ -9,6 +10,7 @@ export async function login(credentials: ILoginCredentials) {
       queryRoutes.auth.login,
       credentials,
     )
+
     return res.data
   } catch (error) {
     console.error(error)
@@ -24,6 +26,7 @@ export async function checkUser(token?: string) {
       },
     })
     const data = await res.json()
+
     return data
   } catch (error) {
     console.error(`Произошла ошибка при проверке пользователя: ${error}`)

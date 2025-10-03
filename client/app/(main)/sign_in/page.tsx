@@ -1,10 +1,11 @@
 'use client'
 
-import { Input } from "@heroui/input"
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
+import { Input } from '@heroui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+
 import { ILoginCredentials } from '@/utils/api/auth/types'
 import { useLoginMutation } from '@/utils/api/auth/api'
 
@@ -28,20 +29,33 @@ export default function SignInPage() {
   }
 
   return (
-    <div className='w-[350px] flex flex-col gap-5'>
-      <h2 className='text-2xl font-bold'>Вход в систему</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+    <div className="w-[350px] flex flex-col gap-5">
+      <h2 className="text-2xl font-bold">Вход в систему</h2>
+      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <Input label='Email' {...register('email')} placeholder='example@example.com' />
-          {errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>}
-        </div>
-        <div>
-          <Input label='Пароль' {...register('password')} type='password' placeholder='••••••••' />
-          {errors.password && (
-            <p className='text-red-500 text-sm mt-1'>{errors.password.message}</p>
+          <Input
+            label="Email"
+            {...register('email')}
+            placeholder="example@example.com"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
           )}
         </div>
-        <Button type='submit'>Войти</Button>
+        <div>
+          <Input
+            label="Пароль"
+            {...register('password')}
+            placeholder="••••••••"
+            type="password"
+          />
+          {errors.password && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+            </p>
+          )}
+        </div>
+        <Button type="submit">Войти</Button>
       </form>
     </div>
   )

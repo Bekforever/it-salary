@@ -7,9 +7,7 @@ const Chart = () => {
       <CardHeader>
         <h3 className="text-4xl font-light">Графики</h3>
       </CardHeader>
-      <CardBody>
-        
-      </CardBody>
+      <CardBody />
     </Card>
   )
 }

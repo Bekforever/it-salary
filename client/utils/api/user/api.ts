@@ -1,9 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import { AxiosError } from 'axios'
-import { TErrorMsg } from '@/utils/lib/types'
+
 import { IUser, IUserCreateBody } from './types'
+
 import { createUser, deleteUser, getUser, getUsers, updateUser } from '.'
+
+import { TErrorMsg } from '@/utils/lib/types'
 
 export const useGetAllUsers = () => {
   return useQuery<IUser[], any, IUser[]>({
@@ -21,6 +23,7 @@ export const useGetOneUser = (id: string) => {
 
 export const useCreateUser = () => {
   const queryClient = useQueryClient()
+
   return useMutation<unknown, AxiosError<TErrorMsg>, IUserCreateBody>({
     mutationFn: createUser,
     onSuccess: () => {
@@ -31,6 +34,7 @@ export const useCreateUser = () => {
 
 export const useDeleteUser = () => {
   const queryClient = useQueryClient()
+
   return useMutation<unknown, any, string>({
     mutationFn: deleteUser,
     onSuccess: () => {
@@ -41,6 +45,7 @@ export const useDeleteUser = () => {
 
 export const useUpdateUser = () => {
   const queryClient = useQueryClient()
+
   return useMutation<
     IUser,
     unknown,

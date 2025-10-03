@@ -1,13 +1,27 @@
 'use client'
 
-import { Button } from "@heroui/button"
-import { Input } from "@heroui/input"
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/table"
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal"
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { Button } from '@heroui/button'
+import { Input } from '@heroui/input'
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from '@heroui/modal'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from '@heroui/table'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import {
   useCreatePosition,
   useDeletePosition,
@@ -29,12 +43,7 @@ export default function PositionTable() {
   const { mutateAsync: updatePosition } = useUpdatePosition()
   const [editingPosition, setEditingPosition] = useState<any | null>(null)
   const { isOpen, onOpenChange, onOpen } = useDisclosure()
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<IPositionCreateBody>({
+  const { register, handleSubmit, reset } = useForm<IPositionCreateBody>({
     resolver: zodResolver(positionSchema),
   })
 
@@ -62,6 +71,7 @@ export default function PositionTable() {
   const handleDelete = (id: string) => {
     deletePosition(id)
   }
+
   useEffect(() => {
     if (!isOpen) {
       reset({ name: '' })
@@ -70,13 +80,13 @@ export default function PositionTable() {
   }, [isOpen])
 
   return (
-    <div className='w-full mt-10 flex flex-col gap-5'>
-      <div className='flex items-center justify-between'>
-        <h1 className='font-bold'>Positions</h1>
+    <div className="w-full mt-10 flex flex-col gap-5">
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold">Positions</h1>
         <Button onClick={onOpen}>Add Position</Button>
       </div>
       <Table
-        aria-label='Positions Table'
+        aria-label="Positions Table"
         style={{
           height: 'auto',
           minWidth: '100%',
@@ -94,11 +104,13 @@ export default function PositionTable() {
               <TableCell>{position.name}</TableCell>
               <TableCell>{formatDate(position.createdAt)}</TableCell>
               <TableCell>{formatDate(position.updatedAt)}</TableCell>
-              <TableCell style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Button size='sm' onClick={() => handleEdit(position)}>
+              <TableCell
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <Button size="sm" onClick={() => handleEdit(position)}>
                   Edit
                 </Button>
-                <Button size='sm' onClick={() => handleDelete(position.id)}>
+                <Button size="sm" onClick={() => handleDelete(position.id)}>
                   Delete
                 </Button>
               </TableCell>
@@ -114,16 +126,20 @@ export default function PositionTable() {
           </ModalHeader>
           <ModalBody>
             <form onSubmit={handleSubmit(handleAdd)}>
-              <div className='flex flex-col gap-3'>
+              <div className="flex flex-col gap-3">
                 <Input
                   {...register('name')}
-                  placeholder='Position Name'
-                  label='Name'
                   fullWidth
                   isClearable
+                  label="Name"
+                  placeholder="Position Name"
                 />
-                {isError && <span className='text-red-500'>{error?.response?.data?.message}</span>}
-                <Button type='submit'>
+                {isError && (
+                  <span className="text-red-500">
+                    {error?.response?.data?.message}
+                  </span>
+                )}
+                <Button type="submit">
                   {editingPosition ? 'Update Position' : 'Add Position'}
                 </Button>
               </div>

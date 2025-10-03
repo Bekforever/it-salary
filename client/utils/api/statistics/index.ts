@@ -1,6 +1,7 @@
+import { TStatistics, TStatisticsFilters } from './types'
+
 import { http } from '@/utils/config/axios'
 import { queryRoutes } from '@/utils/config/query-routes'
-import { TStatistics, TStatisticsFilters } from './types'
 import { ResponseWithMsg } from '@/utils/lib/types'
 
 export async function getStatistics(params: Partial<TStatisticsFilters>) {
@@ -10,5 +11,6 @@ export async function getStatistics(params: Partial<TStatisticsFilters>) {
       params,
     },
   )
+
   return data
 }

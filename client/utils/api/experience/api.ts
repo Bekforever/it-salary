@@ -1,4 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
+
+import {
+  IExperience,
+  IExperienceCreateBody,
+  IExperienceUpdateBody,
+} from './types'
+
 import {
   createExperience,
   deleteExperience,
@@ -6,12 +14,7 @@ import {
   getExperiences,
   updateExperience,
 } from '.'
-import {
-  IExperience,
-  IExperienceCreateBody,
-  IExperienceUpdateBody,
-} from './types'
-import { AxiosError } from 'axios'
+
 import { TErrorMsg } from '@/utils/lib/types'
 
 export const useGetAllExperiences = () => {
@@ -30,6 +33,7 @@ export const useGetOneExperience = (id: string) => {
 
 export const useCreateExperience = () => {
   const queryClient = useQueryClient()
+
   return useMutation<unknown, AxiosError<TErrorMsg>, IExperienceCreateBody>({
     mutationFn: createExperience,
     onSuccess: () => {
@@ -40,6 +44,7 @@ export const useCreateExperience = () => {
 
 export const useDeleteExperience = () => {
   const queryClient = useQueryClient()
+
   return useMutation<unknown, AxiosError<TErrorMsg>, string>({
     mutationFn: deleteExperience,
     onSuccess: () => {
@@ -50,6 +55,7 @@ export const useDeleteExperience = () => {
 
 export const useUpdateExperience = () => {
   const queryClient = useQueryClient()
+
   return useMutation<IExperience, AxiosError<TErrorMsg>, IExperienceUpdateBody>(
     {
       mutationFn: updateExperience,

@@ -4,23 +4,23 @@ export interface ILoginCredentials {
 }
 
 export interface ILoginResponseData {
-  message: string;
-  data:    ILoginResponse;
+  message: string
+  data: ILoginResponse
 }
 
 export interface ILoginResponse {
-  token: string;
-  user:  User;
+  token: string
+  user: User
 }
 
 export interface User {
-  id:         string;
-  email:      string;
-  role:       string;
-  city:       string;
-  experience: string;
-  position:   string;
-  salary:     string;
-  createdAt:  Date;
-  updatedAt:  Date;
+  id: string
+  email: string
+  role: string
+  city: string
+  experience: string
+  position: string
+  salary: string
+  createdAt: Date
+  updatedAt: Date
 }

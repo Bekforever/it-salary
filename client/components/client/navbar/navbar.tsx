@@ -6,16 +6,18 @@ import {
   NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
-} from '@heroui/navbar';
-import { Link } from '@heroui/link';
-import NextLink from 'next/link';
-import { siteConfig } from '@/utils/config/site';
-import { ThemeSwitch } from '@/components/ui/theme-switch';
-import { Logo } from '@/components/ui/icons';
-import NavbarUser from './navbar-user';
-import NavbarLinks from './navbar-links';
+} from '@heroui/navbar'
+import { Link } from '@heroui/link'
+import NextLink from 'next/link'
 
-export const Navbar = function() {
+import NavbarUser from './navbar-user'
+import NavbarLinks from './navbar-links'
+
+import { siteConfig } from '@/utils/config/site'
+import { ThemeSwitch } from '@/components/ui/theme-switch'
+import { Logo } from '@/components/ui/icons'
+
+export const Navbar = function () {
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -64,5 +66,5 @@ export const Navbar = function() {
         </div>
       </NavbarMenu>
     </NextUINavbar>
-  );
+  )
 }

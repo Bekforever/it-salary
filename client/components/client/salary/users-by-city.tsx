@@ -1,6 +1,7 @@
+import { Progress } from '@heroui/progress'
+
 import { TStatistics } from '@/utils/api/statistics/types'
 import { ResponseWithMsg } from '@/utils/lib/types'
-import { Progress } from '@heroui/progress'
 
 type Props = {
   data: ResponseWithMsg<TStatistics>
@@ -21,14 +22,14 @@ export const UsersByCity = ({ data }: Props) => {
       {data?.data?.users?.usersByCity?.map((city, index) => (
         <Progress
           key={city.city}
-          label={`${city.city} (${city.count})`}
           color={colors[index % colors.length]}
-          value={+city.count}
+          label={`${city.city} (${city.count})`}
           maxValue={
             +data?.data?.users?.usersByCity?.sort(
               (a, b) => +b.count - +a.count,
             )[0]?.count
           }
+          value={+city.count}
         />
       ))}
     </div>

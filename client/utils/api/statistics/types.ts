@@ -1,6 +1,13 @@
 export interface TStatistics {
   users: Users
-  salaries: Salaries
+  salaries: {
+    total: Salaries
+    salaryByCity: Salaries & { city: string }
+    salaryByPosition: Salaries & { position: string }
+    salaryByExperience: Salaries & { experience: string }
+    salaryByCompany: Salaries & { company: string }
+    salaryByLocation: Salaries & { location: string }
+  }
 }
 
 export interface Salaries {

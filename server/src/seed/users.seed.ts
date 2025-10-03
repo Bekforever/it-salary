@@ -1,13 +1,14 @@
-import { eq } from 'drizzle-orm'
+import bcrypt from 'bcrypt'
 import { City } from '../db/city.model'
-import { Experience } from '../db/experience.model'
-import { Position } from '../db/position.model'
 import { Company } from '../db/company.model'
+import { Experience } from '../db/experience.model'
 import { Location } from '../db/location.model'
-import { User } from '../db/user.model'
+import { Position } from '../db/position.model'
 import db from '../db/schema'
+import { User } from '../db/user.model'
 
 export const seedUsers = async () => {
+  const hashedPassword = await bcrypt.hash('password123', 10)
   const cityRecords = await db.select().from(City)
   const experienceRecords = await db.select().from(Experience)
   const positionRecords = await db.select().from(Position)
@@ -15,11 +16,11 @@ export const seedUsers = async () => {
   const locationRecords = await db.select().from(Location)
 
   if (
-    cityRecords.length < 3 ||
-    experienceRecords.length < 3 ||
-    positionRecords.length < 3 ||
-    companyRecords.length < 3 ||
-    locationRecords.length < 3
+    cityRecords.length < 2 ||
+    experienceRecords.length < 2 ||
+    positionRecords.length < 2 ||
+    companyRecords.length < 2 ||
+    locationRecords.length < 2
   ) {
     throw new Error('Not enough seed data in related tables')
   }
@@ -27,7 +28,7 @@ export const seedUsers = async () => {
   await db.insert(User).values([
     {
       email: 'admin@admin.com',
-      password: 'password123',
+      password: hashedPassword,
       role: 'boss',
       city: cityRecords[0].id,
       experience: experienceRecords[0].id,
@@ -38,7 +39,7 @@ export const seedUsers = async () => {
     },
     {
       email: 'user1@user.com',
-      password: 'password123',
+      password: hashedPassword,
       role: 'user',
       city: cityRecords[1].id,
       experience: experienceRecords[1].id,
@@ -49,45 +50,45 @@ export const seedUsers = async () => {
     },
     {
       email: 'user2@user.com',
-      password: 'password123',
+      password: hashedPassword,
       role: 'user',
       city: cityRecords[2].id,
       experience: experienceRecords[2].id,
       position: positionRecords[2].id,
-      company: companyRecords[2].id,
+      company: companyRecords[1].id,
       location: locationRecords[2].id,
       salary: '60000',
     },
     {
       email: 'user3@user.com',
-      password: 'password123',
+      password: hashedPassword,
       role: 'user',
       city: cityRecords[2].id,
       experience: experienceRecords[2].id,
       position: positionRecords[2].id,
-      company: companyRecords[2].id,
+      company: companyRecords[1].id,
       location: locationRecords[2].id,
       salary: '55000',
     },
     {
       email: 'user4@user.com',
-      password: 'password123',
+      password: hashedPassword,
       role: 'user',
       city: cityRecords[2].id,
       experience: experienceRecords[2].id,
       position: positionRecords[2].id,
-      company: companyRecords[2].id,
+      company: companyRecords[1].id,
       location: locationRecords[2].id,
       salary: '70000',
     },
     {
       email: 'user5@user.com',
-      password: 'password123',
+      password: hashedPassword,
       role: 'user',
       city: cityRecords[2].id,
       experience: experienceRecords[2].id,
       position: positionRecords[2].id,
-      company: companyRecords[2].id,
+      company: companyRecords[1].id,
       location: locationRecords[2].id,
       salary: '65000',
     },

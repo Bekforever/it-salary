@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 
-const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key' // Используй переменные окружения
+const SECRET_KEY = process.env.JWT_SECRET || 'no_secret' // Используй переменные окружения
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.headers.authorization

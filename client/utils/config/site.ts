@@ -34,7 +34,7 @@ export const siteConfig = {
     },
     {
       label: 'Зарплаты',
-      href: '/docs',
+      href: '/salary',
     },
   ],
-};
+}

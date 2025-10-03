@@ -1,21 +1,25 @@
-import { ILoginCredentials } from '@/utils/api/auth/types'
 import { loginSchema } from '../schemas'
 
-export function loginAction({ email, password }: ILoginCredentials) {
-  // Validate form fields
-  const validatedFields = loginSchema.safeParse({
-    email,
-    password,
-  })
+type LoginState = {
+  errors?: { email?: string[]; password?: string[] }
+  message?: string
+  data?: { email?: string; password?: string }
+}
 
-  // If any form fields are invalid, return early
+export async function loginAction(
+  prevState: LoginState,
+  formData: FormData,
+): Promise<LoginState> {
+  const email = formData.get('email')?.toString() ?? ''
+  const password = formData.get('password')?.toString() ?? ''
+
+  const validatedFields = loginSchema.safeParse({ email, password })
+
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     }
   }
-
-  console.log(validatedFields)
 
   return {
     message: 'Авторизация успешна',

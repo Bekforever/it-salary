@@ -1,20 +1,39 @@
 'use client'
-import { useGetAllCities } from '@/utils/api/city/api'
-import { useGetAllExperiences } from '@/utils/api/experience/api'
-import { useGetAllPositions } from '@/utils/api/position/api'
-import { useGetAllUsers, useCreateUser, useDeleteUser, useUpdateUser } from '@/utils/api/user/api'
-import { IUser } from '@/utils/api/user/types'
-import { formatDate } from '@/utils/lib/formatDate'
-import { formatNumber } from '@/utils/lib/formatNumber'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from "@heroui/button"
-import { Input } from "@heroui/input"
-import { useDisclosure, Modal, ModalContent, ModalHeader, ModalBody } from "@heroui/modal"
-import { Select, SelectItem } from "@heroui/select"
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/table"
+import { Button } from '@heroui/button'
+import { Input } from '@heroui/input'
+import {
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+} from '@heroui/modal'
+import { Select, SelectItem } from '@heroui/select'
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from '@heroui/table'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+
+import { formatNumber } from '@/utils/lib/formatNumber'
+import { formatDate } from '@/utils/lib/formatDate'
+import { IUser } from '@/utils/api/user/types'
+import {
+  useGetAllUsers,
+  useCreateUser,
+  useDeleteUser,
+  useUpdateUser,
+} from '@/utils/api/user/api'
+import { useGetAllPositions } from '@/utils/api/position/api'
+import { useGetAllExperiences } from '@/utils/api/experience/api'
+import { useGetAllCities } from '@/utils/api/city/api'
 
 const userSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -79,13 +98,13 @@ export default function UserTable() {
   }, [isOpen])
 
   return (
-    <div className='w-full mt-10 flex flex-col gap-5'>
-      <div className='flex items-center justify-between'>
-        <h1 className='font-bold'>Users</h1>
+    <div className="w-full mt-10 flex flex-col gap-5">
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold">Users</h1>
         <Button onClick={onOpen}>Add User</Button>
       </div>
       <Table
-        aria-label='Users Table'
+        aria-label="Users Table"
         style={{
           height: 'auto',
           minWidth: '100%',
@@ -106,20 +125,31 @@ export default function UserTable() {
             <TableRow key={index}>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role}</TableCell>
-              <TableCell>{cities?.find((city) => city.id === user.city)?.name}</TableCell>
               <TableCell>
-                {positions?.find((position) => position.id === user.position)?.name}
+                {cities?.find((city) => city.id === user.city)?.name}
               </TableCell>
               <TableCell>
-                {experiences?.find((experience) => experience.id === user.experience)?.name}
+                {
+                  positions?.find((position) => position.id === user.position)
+                    ?.name
+                }
               </TableCell>
-              <TableCell>{formatNumber(user.salary)}</TableCell>
+              <TableCell>
+                {
+                  experiences?.find(
+                    (experience) => experience.id === user.experience,
+                  )?.name
+                }
+              </TableCell>
+              <TableCell>{formatNumber(+user.salary)}</TableCell>
               <TableCell>{formatDate(user.createdAt)}</TableCell>
-              <TableCell style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Button size='sm' onClick={() => handleEdit(user)}>
+              <TableCell
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <Button size="sm" onClick={() => handleEdit(user)}>
                   Edit
                 </Button>
-                <Button size='sm' onClick={() => handleDelete(user.id)}>
+                <Button size="sm" onClick={() => handleDelete(user.id)}>
                   Delete
                 </Button>
               </TableCell>
@@ -135,15 +165,27 @@ export default function UserTable() {
           </ModalHeader>
           <ModalBody>
             <form onSubmit={handleSubmit(handleAdd)}>
-              <div className='flex flex-col gap-3'>
-                <Input {...register('email')} placeholder='Email' label='Email' fullWidth />
-                <span className='text-red-500'>{errors.email?.message}</span>
-                <Input {...register('role')} placeholder='Role' label='Role' fullWidth />
-                <span className='text-red-500'>{errors.role?.message}</span>
+              <div className="flex flex-col gap-3">
+                <Input
+                  {...register('email')}
+                  fullWidth
+                  label="Email"
+                  placeholder="Email"
+                />
+                <span className="text-red-500">{errors.email?.message}</span>
+                <Input
+                  {...register('role')}
+                  fullWidth
+                  label="Role"
+                  placeholder="Role"
+                />
+                <span className="text-red-500">{errors.role?.message}</span>
                 <Select
-                  label='City'
-                  onSelectionChange={(value) => setValue('city', value.currentKey)}
                   defaultSelectedKeys={editingUser ? [editingUser.city] : []}
+                  label="City"
+                  onSelectionChange={(value) =>
+                    setValue('city', value.currentKey)
+                  }
                 >
                   {cities?.map((city) => (
                     <SelectItem key={city.id} value={city.id}>
@@ -151,11 +193,15 @@ export default function UserTable() {
                     </SelectItem>
                   ))}
                 </Select>
-                <span className='text-red-500'>{errors.city?.message}</span>
+                <span className="text-red-500">{errors.city?.message}</span>
                 <Select
-                  label='Experience'
-                  onSelectionChange={(value) => setValue('experience', value.currentKey)}
-                  defaultSelectedKeys={editingUser ? [editingUser.experience] : []}
+                  defaultSelectedKeys={
+                    editingUser ? [editingUser.experience] : []
+                  }
+                  label="Experience"
+                  onSelectionChange={(value) =>
+                    setValue('experience', value.currentKey)
+                  }
                 >
                   {experiences?.map((experience) => (
                     <SelectItem key={experience.id} value={experience.id}>
@@ -163,11 +209,17 @@ export default function UserTable() {
                     </SelectItem>
                   ))}
                 </Select>
-                <span className='text-red-500'>{errors.experience?.message}</span>
+                <span className="text-red-500">
+                  {errors.experience?.message}
+                </span>
                 <Select
-                  label='Position'
-                  onSelectionChange={(value) => setValue('position', value.currentKey)}
-                  defaultSelectedKeys={editingUser ? [editingUser.position] : []}
+                  defaultSelectedKeys={
+                    editingUser ? [editingUser.position] : []
+                  }
+                  label="Position"
+                  onSelectionChange={(value) =>
+                    setValue('position', value.currentKey)
+                  }
                 >
                   {positions?.map((position) => (
                     <SelectItem key={position.id} value={position.id}>
@@ -175,11 +227,22 @@ export default function UserTable() {
                     </SelectItem>
                   ))}
                 </Select>
-                <span className='text-red-500'>{errors.position?.message}</span>
-                <Input {...register('salary')} placeholder='Salary' label='Salary' fullWidth />
-                <span className='text-red-500'>{errors.salary?.message}</span>
-                {isError && <span className='text-red-500'>{error?.response?.data?.message}</span>}
-                <Button type='submit'>{editingUser ? 'Update User' : 'Add User'}</Button>
+                <span className="text-red-500">{errors.position?.message}</span>
+                <Input
+                  {...register('salary')}
+                  fullWidth
+                  label="Salary"
+                  placeholder="Salary"
+                />
+                <span className="text-red-500">{errors.salary?.message}</span>
+                {isError && (
+                  <span className="text-red-500">
+                    {error?.response?.data?.message}
+                  </span>
+                )}
+                <Button type="submit">
+                  {editingUser ? 'Update User' : 'Add User'}
+                </Button>
               </div>
             </form>
           </ModalBody>

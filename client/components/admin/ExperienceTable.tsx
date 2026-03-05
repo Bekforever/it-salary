@@ -93,7 +93,7 @@ export default function ExperienceTable() {
         <Button onClick={onOpen}>Add Experience</Button>
       </div>
       <Table
-        aria-label="Cities Table"
+        aria-label="Experiences Table"
         style={{
           height: 'auto',
           minWidth: '100%',

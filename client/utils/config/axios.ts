@@ -29,7 +29,7 @@ http.interceptors.response.use(
   (error) => {
     if (error.response?.data?.error.toLowerCase().includes('токен')) {
       Cookies.remove(TOKEN) // Удаляем недействительный токен
-      window.location.href = 'http://localhost:3000/sign_in'
+      window.location.href = '/sign_in'
     }
 
     return Promise.reject(error)

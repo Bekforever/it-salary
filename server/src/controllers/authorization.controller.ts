@@ -43,8 +43,9 @@ class AuthorizationController {
     }
 
     try {
-      const decoded = jwt.verify(token, 'secret') as { id: number; email: string }
-      const users = await db.select().from(User).where(eq(User.id, decoded.id.toString()))
+      const jwtSecret = process.env.JWT_SECRET || 'no_secret'
+      const decoded = jwt.verify(token, jwtSecret) as { id: string; email: string }
+      const users = await db.select().from(User).where(eq(User.id, decoded.id))
       const user = users[0]
 
       if (!user) {

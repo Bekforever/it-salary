@@ -3,28 +3,43 @@ import { Button } from '@heroui/button'
 import { Input } from '@heroui/input'
 import { Select, SelectItem } from '@heroui/select'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import * as z from 'zod'
+
+import { useGetAllCities } from '@/utils/api/city/api'
+import { useGetAllExperiences } from '@/utils/api/experience/api'
+import { useGetAllPositions } from '@/utils/api/position/api'
+import { useCreateUser } from '@/utils/api/user/api'
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
     .min(8, { message: 'Password must be at least 8 characters' }),
-  role: z.enum(['boss', 'employee'], { message: 'Role is required' }),
+  role: z.enum(['boss', 'user'], { message: 'Role is required' }),
   city: z.string().nonempty({ message: 'City is required' }),
   experience: z.string().nonempty({ message: 'Experience is required' }),
   position: z.string().nonempty({ message: 'Position is required' }),
   salary: z.string().regex(/^\d+$/, { message: 'Salary must be a number' }),
 })
 
+type FormValues = z.infer<typeof schema>
+
 const RegistrationForm = () => {
-  const { control, handleSubmit } = useForm({
+  const router = useRouter()
+  const { data: cities } = useGetAllCities()
+  const { data: experiences } = useGetAllExperiences()
+  const { data: positions } = useGetAllPositions()
+  const { mutateAsync: createUser, isError, error } = useCreateUser()
+
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
   })
 
-  const onSubmit = (data) => {
-    console.log('Form values:', data)
+  const onSubmit = async (data: FormValues) => {
+    await createUser(data)
+    router.push('/sign_in')
   }
 
   return (
@@ -46,7 +61,6 @@ const RegistrationForm = () => {
               {...field}
               label="Email"
               placeholder="Enter your email"
-              // error={errors.email?.message}
             />
           )}
         />
@@ -62,7 +76,6 @@ const RegistrationForm = () => {
               label="Password"
               placeholder="Enter your password"
               type="password"
-              // error={errors.password?.message}
             />
           )}
         />
@@ -74,8 +87,8 @@ const RegistrationForm = () => {
           name="role"
           render={({ field }) => (
             <Select {...field} label="Role">
-              <SelectItem value="boss">Boss</SelectItem>
-              <SelectItem value="employee">Employee</SelectItem>
+              <SelectItem key="boss" value="boss">Boss</SelectItem>
+              <SelectItem key="user" value="user">User</SelectItem>
             </Select>
           )}
         />
@@ -87,10 +100,11 @@ const RegistrationForm = () => {
           name="city"
           render={({ field }) => (
             <Select {...field} label="City">
-              <SelectItem value="5bdf0b03-0653-40cf-8841-0a8f648407bb">
-                City 1
-              </SelectItem>
-              <SelectItem value="another-city-id">City 2</SelectItem>
+              {(cities ?? []).map((city) => (
+                <SelectItem key={city.id} value={city.id}>
+                  {city.name}
+                </SelectItem>
+              ))}
             </Select>
           )}
         />
@@ -102,10 +116,11 @@ const RegistrationForm = () => {
           name="experience"
           render={({ field }) => (
             <Select {...field} label="Experience">
-              <SelectItem value="d6f390c2-a412-404c-a36f-0265da03b117">
-                Junior
-              </SelectItem>
-              <SelectItem value="another-experience-id">Senior</SelectItem>
+              {(experiences ?? []).map((exp) => (
+                <SelectItem key={exp.id} value={exp.id}>
+                  {exp.name}
+                </SelectItem>
+              ))}
             </Select>
           )}
         />
@@ -117,10 +132,11 @@ const RegistrationForm = () => {
           name="position"
           render={({ field }) => (
             <Select {...field} label="Position">
-              <SelectItem value="1f56eb9d-7e39-4660-8c52-feda5da8ee73">
-                Developer
-              </SelectItem>
-              <SelectItem value="another-position-id">Designer</SelectItem>
+              {(positions ?? []).map((pos) => (
+                <SelectItem key={pos.id} value={pos.id}>
+                  {pos.name}
+                </SelectItem>
+              ))}
             </Select>
           )}
         />
@@ -135,6 +151,12 @@ const RegistrationForm = () => {
           )}
         />
       </div>
+
+      {isError && (
+        <span className="text-red-500">
+          {(error as any)?.response?.data?.message ?? 'Registration failed'}
+        </span>
+      )}
 
       <Button type="submit">Register</Button>
     </form>

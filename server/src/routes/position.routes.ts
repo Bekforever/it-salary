@@ -1,4 +1,4 @@
-import Router from 'express'
+import { Router } from 'express'
 import PositionController from '../controllers/position.controller'
 
 const router = Router()

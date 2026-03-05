@@ -37,7 +37,7 @@ const positionSchema = z.object({
 })
 
 export default function PositionTable() {
-  const { data: cities, isLoading } = useGetAllPositions()
+  const { data: positions, isLoading } = useGetAllPositions()
   const { mutateAsync: createPosition, isError, error } = useCreatePosition()
   const { mutate: deletePosition } = useDeletePosition()
   const { mutateAsync: updatePosition } = useUpdatePosition()
@@ -99,7 +99,7 @@ export default function PositionTable() {
           <TableColumn>ACTIONS</TableColumn>
         </TableHeader>
         <TableBody isLoading={isLoading}>
-          {cities?.map((position, index) => (
+          {positions?.map((position, index) => (
             <TableRow key={index}>
               <TableCell>{position.name}</TableCell>
               <TableCell>{formatDate(position.createdAt)}</TableCell>

@@ -14,24 +14,24 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
     "drizzle-orm": "^0.39.3",
-    "express": "^4.21.1",
-    "jsonwebtoken": "^9.0.2",
-    "pg": "^8.13.3"
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
+    "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/node": "^22.13.5",
-    "@types/pg": "^8.11.11",
-    "drizzle-kit": "^0.30.4",
-    "nodemon": "^3.1.7",
+    "@types/node": "^22.19.13",
+    "@types/pg": "^8.18.0",
+    "drizzle-kit": "^0.30.6",
+    "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
-    "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

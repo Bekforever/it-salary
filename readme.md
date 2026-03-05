@@ -1,51 +1,116 @@
+# IT Salary — Uzbekistan
 
-# IT Specialists Salary Data
+An open-source platform for collecting and visualizing salary data of IT specialists in Uzbekistan. The goal is to give developers, employers, and the community a transparent, community-driven picture of what IT professionals actually earn across different cities, roles, and experience levels in the country.
 
-This is an open-source project that aims to collect, analyze, and visualize salary data for IT professionals in Uzbekistan. The goal of this project is to provide valuable insights for job seekers, companies, and policymakers about the state of the IT job market in the country.
+> Built by the community, for the community. All data is submitted anonymously by IT professionals themselves.
 
-## Table of Contents
+## Why this exists
 
-- [Project Overview](#project-overview)
-- [Data Sources](#data-sources)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+Salary data in Uzbekistan's IT market is largely opaque. Job postings rarely list salaries, and there's no reliable public source to benchmark compensation. This project aims to change that — by aggregating self-reported salary data and making the trends visible to everyone.
 
-## Project Overview
+## What it does
 
-This project focuses on gathering data about salaries, positions, and other relevant job market details of IT specialists in Uzbekistan. The data is collected from multiple sources, analyzed, and visualized to help make informed decisions about career development, hiring trends, and salary expectations.
+- **Anonymous salary submissions** — anyone can submit their salary, position, city, company, and experience level
+- **Interactive charts** — salary distributions broken down by role, experience, location, and company
+- **Filters** — compare salaries across any combination of dimensions
+- **Submission history** — registered users can view and manage their own submissions
+- **Admin panel** — manage reference data (cities, positions, companies, experience levels)
 
-## Data Sources
+## Tech stack
 
-The salary data is sourced from the following:
-- Online job portals
-- Surveys and feedback from professionals in the field
-- Publicly available industry reports
-- Social media platforms and forums
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 15, TypeScript, HeroUI, TailwindCSS, Recharts |
+| Backend | Express, TypeScript, Drizzle ORM |
+| Database | PostgreSQL |
+| Auth | JWT (HTTP-only cookies) |
 
-## Features
+## Contributing
 
-- **Salary Insights**: Interactive graphs and charts showcasing salary distributions by role, experience, and location in Uzbekistan.
-- **Position Breakdown**: Overview of common IT job roles and their corresponding salary ranges.
-- **Experience Level**: Insights into how experience influences salaries.
-- **Location Analysis**: Comparison of salaries across different cities in Uzbekistan.
+Contributions are welcome. If you want to add a feature, fix a bug, or improve the data model:
 
-## Installation
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Open a pull request
 
-### Prerequisites
+Please open an issue first for significant changes so we can discuss the approach.
 
-Before running the project, ensure you have the following installed:
+## License
 
-- **Node.js**: [Download and install Node.js](https://nodejs.org/)
-- **PostgreSQL**: [Download and install PostgreSQL](https://www.postgresql.org/download/)
-
-Make sure both Node.js and PostgreSQL are properly installed and running on your system.
-
+This project is licensed under the [GNU General Public License v3.0](./LICENSE).
 
 ---
 
-### This README is a work in progress
+## Local Setup
 
-Please note that this README will be updated soon to include more information about the project.
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 18+
+- [pnpm](https://pnpm.io/installation)
+- [PostgreSQL](https://www.postgresql.org/download/) 14+
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/bekforever/it-salary.git
+cd it-salary
+```
+
+### 2. Configure environment variables
+
+**Server** (`server/.env`):
+```env
+DB_USER=postgres
+DB_HOST=localhost
+DB_NAME=it_salary
+DB_PASSWORD=your_password
+DB_PORT=5432
+PORT=5000
+```
+
+**Client** (`client/.env.local`):
+```env
+NEXT_PUBLIC_BASE_URL=http://localhost:5000/api
+NEXT_PUBLIC_TOKEN=at
+```
+
+### 3. Create the database
+
+```bash
+psql -U postgres -c "CREATE DATABASE it_salary;"
+```
+
+### 4. Install dependencies
+
+```bash
+cd server && pnpm install
+cd ../client && pnpm install
+```
+
+### 5. Run migrations and seed
+
+```bash
+cd server
+npx drizzle-kit migrate
+pnpm run seed
+```
+
+### 6. Start the development servers
+
+```bash
+# Terminal 1 — backend (http://localhost:5000)
+cd server && pnpm run dev
+
+# Terminal 2 — frontend (http://localhost:3000)
+cd client && pnpm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Default accounts (after seed)
+
+| Email | Password | Role |
+|---|---|---|
+| admin@admin.com | password123 | admin |
+| user1@user.com | password123 | user |

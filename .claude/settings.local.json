@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(psql:*)",
+      "Bash(PGPASSWORD=postgres \"/c/Program Files/PostgreSQL/18/bin/psql.exe\":*)",
+      "Bash(net start:*)",
+      "Bash(PGPASSWORD=\"12345\" \"/c/Program Files/PostgreSQL/18/bin/psql.exe\":*)",
+      "Bash(grep:*)",
+      "Bash(net:*)",
+      "Bash(\"/c/Program Files/PostgreSQL/18/bin/psql.exe\":*)",
+      "Bash(yarn outdated:*)",
+      "Bash(yarn install:*)",
+      "Bash(yarn build:*)",
+      "Bash(npx drizzle-kit:*)",
+      "Bash(npm run:*)",
+      "Bash(yarn dev:*)",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd:*)"
+    ]
+  }
+}

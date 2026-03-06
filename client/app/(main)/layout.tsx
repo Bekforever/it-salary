@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/client'
+import { Navbar } from '@/widgets/navbar'
 
 import '@/styles/globals.css'
 import { Link } from '@heroui/link'

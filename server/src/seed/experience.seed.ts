@@ -1,5 +1,5 @@
-import { Experience } from '../db/experience.model'
-import db from '../db/schema'
+import db from '../db/connection'
+import { Experience } from '../modules/experience/experience.model'
 
 export const seedExperience = async () => {
   await db.insert(Experience).values([

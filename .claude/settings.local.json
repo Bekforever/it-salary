@@ -18,7 +18,8 @@
       "Bash(netstat:*)",
       "Bash(taskkill:*)",
       "Bash(cmd:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

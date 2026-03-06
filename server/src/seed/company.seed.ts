@@ -1,5 +1,5 @@
-import { Company } from '../db/company.model'
-import db from '../db/schema'
+import db from '../db/connection'
+import { Company } from '../modules/company/company.model'
 
 export const seedCompany = async () => {
   await db.insert(Company).values([

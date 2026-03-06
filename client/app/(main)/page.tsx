@@ -1,4 +1,4 @@
-import { title } from '@/components/ui/primitives'
+import { title } from '@/shared/ui/primitives'
 
 const MainPage = () => {
   return (

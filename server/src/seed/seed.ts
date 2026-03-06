@@ -1,7 +1,7 @@
 import { sql } from 'drizzle-orm'
 import { migrate } from 'drizzle-orm/node-postgres/migrator'
 import path from 'path'
-import db from '../db/schema'
+import db from '../db/connection'
 import { seedCity } from './city.seed'
 import { seedCompany } from './company.seed'
 import { seedExperience } from './experience.seed'

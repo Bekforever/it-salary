@@ -1,11 +1,9 @@
 'use client'
 import { useState } from 'react'
 
-import Filters from '@/components/client/salary/filters'
-import Minmax from '@/components/client/salary/min-max'
-import { UsersByCity } from '@/components/client/salary/users-by-city'
-import { useGetStatistics } from '@/utils/api/statistics/api'
-import { TStatisticsFilters } from '@/utils/api/statistics/types'
+import { SalaryFilters } from '@/features/salary/filters'
+import { SalaryMinMax, UsersByCity } from '@/widgets/salary-stats'
+import { useGetStatistics, TStatisticsFilters } from '@/entities/statistics'
 
 export default function SalaryPage() {
   const [filters, setFilters] = useState<TStatisticsFilters>({
@@ -22,8 +20,8 @@ export default function SalaryPage() {
   return (
     <div className="flex flex-col gap-10">
       {/* <h1 className="text-5xl">Зарплаты в IT в Узбекистане</h1> */}
-      <Filters filters={filters} setFilters={setFilters} />
-      <Minmax data={data} />
+      <SalaryFilters filters={filters} setFilters={setFilters} />
+      <SalaryMinMax data={data} />
       <UsersByCity data={data} />
     </div>
   )

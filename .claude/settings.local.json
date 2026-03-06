@@ -17,7 +17,9 @@
       "Bash(yarn dev:*)",
       "Bash(netstat:*)",
       "Bash(taskkill:*)",
-      "Bash(cmd:*)"
+      "Bash(cmd:*)",
+      "Bash(cat:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

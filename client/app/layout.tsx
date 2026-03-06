@@ -4,8 +4,8 @@ import { Metadata } from 'next'
 
 import { Providers } from './providers'
 
-import { siteConfig } from '@/utils/config/site'
-import { fontSans } from '@/utils/config/fonts'
+import { siteConfig } from '@/shared/config/site'
+import { fontSans } from '@/shared/config/fonts'
 
 export const metadata: Metadata = {
   title: {

@@ -1,11 +1,12 @@
 import bcrypt from 'bcrypt'
-import { City } from '../db/city.model'
-import { Company } from '../db/company.model'
-import { Experience } from '../db/experience.model'
-import { Location } from '../db/location.model'
-import { Position } from '../db/position.model'
-import db from '../db/schema'
-import { User } from '../db/user.model'
+
+import db from '../db/connection'
+import { City } from '../modules/city/city.model'
+import { Company } from '../modules/company/company.model'
+import { Experience } from '../modules/experience/experience.model'
+import { Location } from '../modules/location/location.model'
+import { Position } from '../modules/position/position.model'
+import { User } from '../modules/user/user.model'
 
 export const seedUsers = async () => {
   const hashedPassword = await bcrypt.hash('password123', 10)

@@ -1,5 +1,5 @@
-import { Location } from '../db/location.model'
-import db from '../db/schema'
+import db from '../db/connection'
+import { Location } from '../modules/location/location.model'
 
 export const seedLocation = async () => {
   await db.insert(Location).values([
